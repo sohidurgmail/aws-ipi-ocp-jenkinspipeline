@@ -8,6 +8,11 @@ pipeline {
             stage('Load shared libs from local repo') {
                   steps {
                         echo "library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)"
+                        library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)
+                        script{
+                              publisher.add_deployment_job_labels()
+                        }
+
                   }
             }
             stage('Checkout to automation repo') {

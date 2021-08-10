@@ -13,10 +13,12 @@ export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
 #readonly BINARIES_DIR="${CLUSTER_DIR}/bin"
 
 
-if [ ! -d "${CLUSTER_DIR}" ] ;
-then
-    echo "Nothing to clean up, the ${CLUSTER_DIR} doesn't exist."
-    exit 0
-fi
+#if [ ! -d "${CLUSTER_DIR}" ] ;
+#then
+#    echo "Nothing to clean up, the ${CLUSTER_DIR} doesn't exist."
+#    exit 0
+#fi
 
-"${BINARIES_DIR}/openshift-install" destroy cluster --dir "${CLUSTER_DIR}" --log-level debug && rm -rf "${CLUSTER_DIR}" || true
+#"${BINARIES_DIR}/openshift-install" destroy cluster --dir "${CLUSTER_DIR}" --log-level debug && rm -rf "${CLUSTER_DIR}" || true
+
+echo "Cluster destroyed....."

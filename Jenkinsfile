@@ -9,8 +9,6 @@ pipeline {
                   steps {
                         echo "library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)"
                         library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)
-                        script{
-                              publisher.add_deployment_job_labels()
                         }
 
                   }

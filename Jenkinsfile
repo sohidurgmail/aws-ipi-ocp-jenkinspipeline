@@ -1,6 +1,5 @@
 pipeline {
       options {
-            ansiColor('xterm')
             timeout(time: 5, unit: 'HOURS') // timeout for deploy job, usually takes no longer then 4h.
             timestamps()
       }

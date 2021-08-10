@@ -30,7 +30,7 @@ pipeline {
                         echo "Checking OCP Workers Health"
                   }
             }
-            stage('Deploy OpenShift Service Mesh) {
+            stage('Deploy OpenShift Service Mesh') {
                   steps {
                         echo "Deploy OpenShift Service Mesh"
                   }

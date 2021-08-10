@@ -5,25 +5,34 @@ pipeline {
       }
       agent any
       stages {
-            stage('Init') {
+            stage('Load shared libs from local repo') {
                   steps {
-                        echo 'Hi, this is Sohidur Rahman'
-                        echo 'We are Starting the Testing'
+                        echo "library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)"
                   }
             }
-            stage('Build') {
+            stage('Checkout to automation repo') {
                   steps {
-                        echo 'Building Sample Maven Project'
+                        echo 'Checkout to automation repo'
                   }
             }
-            stage('Deploy') {
+            stage('Wipe cluster') {
                   steps {
-                        echo "Deploying in Staging Area"
+                        echo 'Wipe cluster'
                   }
             }
-            stage('Deploy Production') {
+            stage('Deploy OCP') {
                   steps {
-                        echo "Deploying in Production Area"
+                        echo 'Deploy OCP'
+                  }
+            }
+            stage('Checking OCP Workers Health') {
+                  steps {
+                        echo "Checking OCP Workers Health"
+                  }
+            }
+            stage('Deploy OpenShift Service Mesh) {
+                  steps {
+                        echo "Deploy OpenShift Service Mesh"
                   }
             }
       }

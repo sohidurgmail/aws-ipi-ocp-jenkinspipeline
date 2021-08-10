@@ -1,0 +1,37 @@
+apiVersion: v1
+baseDomain: __DOMAIN__
+compute:
+- architecture: amd64
+  hyperthreading: Enabled
+  name: worker
+  platform:
+    aws:
+      type: __COMPUTE_FLAVOR__
+  replicas: 3
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  platform:
+    aws:
+      type: m5.xlarge
+  replicas: 3
+metadata:
+  creationTimestamp: null
+  name: __CLUSTER_NAME__
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 10.0.0.0/16
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  aws:
+    region: us-east-2
+publish: External
+sshKey: |
+  ssh-rsa testRSA
+# pullSecret will be added from common/pull-secret.json

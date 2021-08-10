@@ -5,7 +5,6 @@ pipeline {
                   steps {
                         echo 'Hi, this is Sohidur Rahman'
                         echo 'We are Starting the Testing'
-                        echo %AWSKEY%
                   }
             }
             stage('Build') {

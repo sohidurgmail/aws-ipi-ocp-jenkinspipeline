@@ -9,8 +9,6 @@ pipeline {
                   steps {
                         echo "library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)"
                         library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)
-                        }
-
                   }
             }
             stage('Checkout to automation repo') {

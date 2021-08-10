@@ -8,7 +8,7 @@ pipeline {
             stage('Load shared libs from local repo') {
                   steps {
                         echo "library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)"
-                        library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)
+                        //library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)
                   }
             }
             stage('Checkout to automation repo') {
@@ -19,6 +19,13 @@ pipeline {
             stage('Wipe cluster') {
                   steps {
                         echo 'Wipe cluster'
+                        script {
+                              sh(
+                                    script: "bash -ex deprovision.sh",
+                                    label: "Wipe a cluster"
+                              )
+                        }
+     
                   }
             }
             stage('Deploy OCP') {

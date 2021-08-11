@@ -29,8 +29,8 @@ aws --version
 mkdir -p $HOME/.aws
 cat << EOF >>  $HOME/.aws/credentials
 [default]
-aws_access_key_id = ${AWS_KEY}
-aws_secret_access_key = ${AWS_SECRETKEY}
+aws_access_key_id = "${AWS_KEY}"
+aws_secret_access_key = "${AWS_SECRETKEY}"
 region = ${REGION}
 EOF
 

@@ -10,7 +10,7 @@ add_pull_secret()
     # file.
     cat >> "${CLUSTER_DIR}/install-config.yaml" << __EOF__
 pullSecret: |-
-$(sed -e 's/^/  /' pull-secret.json)
+$(sed -e 's/^/  /' ${PULL_SECRET})
 __EOF__
 }
 

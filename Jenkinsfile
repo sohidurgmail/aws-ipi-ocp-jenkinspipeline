@@ -3,7 +3,7 @@ pipeline {
             timeout(time: 5, unit: 'HOURS') // timeout for deploy job, usually takes no longer then 4h.
             timestamps()
       }
-      agent any
+      agent { label "ocp-aws-ipi-executor" }
       stages {
             stage('Load shared libs from local repo') {
                   steps {

@@ -37,12 +37,12 @@ add_pull_secret
 
 # Custom modification to manifests
 # Generate manifests
-"${BINARIES_DIR}/openshift-install" --dir "${CLUSTER_DIR}" create manifests
+#"${BINARIES_DIR}/openshift-install" --dir "${CLUSTER_DIR}" create manifests
 
 echo "Deploying cluster......."
 
 # Generate ISCSI Initiator, it is needed by kubevirt test suite.
-"${SCRIPT_DIR}"/ipsec-initiator.sh
+#"${SCRIPT_DIR}"/ipsec-initiator.sh
 
 # Deploy the cluster
 #"${BINARIES_DIR}/openshift-install" create cluster --dir "$CLUSTER_DIR" --log-level debug || true

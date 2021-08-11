@@ -46,13 +46,13 @@ echo "Deploying cluster......."
 "${SCRIPT_DIR}"/ipsec-initiator.sh
 
 # Deploy the cluster
-#"${BINARIES_DIR}/openshift-install" create cluster --dir "$CLUSTER_DIR" --log-level debug || true
-#if [ -f "$KUBECONFIG" ]; then
-#  "${BINARIES_DIR}/openshift-install" wait-for --dir "$CLUSTER_DIR" --log-level debug install-complete
-#else
-#  echo "Installation didn't get through break"
-#  exit 1
-#fi
+"${BINARIES_DIR}/openshift-install" create cluster --dir "$CLUSTER_DIR" --log-level debug || true
+if [ -f "$KUBECONFIG" ]; then
+  "${BINARIES_DIR}/openshift-install" wait-for --dir "$CLUSTER_DIR" --log-level debug install-complete
+else
+  echo "Installation didn't get through break"
+  exit 1
+fi
 
 
 # Add insecure registries

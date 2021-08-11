@@ -5,12 +5,12 @@ pipeline {
       }
       agent { label "ocp-aws-ipi-executor" }
       stages {
-            stage('Load shared libs from local repo') {
-                  steps {
-                        echo "library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)"
+ //           stage('Load shared libs from local repo') {
+ //                 steps {
+ //                       echo "library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)"
                         //library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)
-                  }
-            }
+ //                 }
+ //           }
 //            stage('Checkout to automation repo') {
 //                  steps {
 //                        echo 'Checkout to automation repo'

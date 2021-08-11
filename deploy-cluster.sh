@@ -22,6 +22,7 @@ mkdir -p "${CLUSTER_DIR}"
 sed -e "s/__DOMAIN__/${CLUSTER_DOMAIN}/" \
     -e "s/__CLUSTER_NAME__/${CLUSTER_NAME}/" \
     -e "s/__COMPUTE_FLAVOR__/${FLAVOR_SIZE}/" \
+    -e "s/__PULL_SECRET__/${PULL_SECRET}/" \
     "${SCRIPT_DIR}"/install-config.yaml > "${CLUSTER_DIR}"/install-config.yaml
 
 # Set networking.networkType field in the installer configuration file from
@@ -29,7 +30,7 @@ sed -e "s/__DOMAIN__/${CLUSTER_DOMAIN}/" \
 #set_network_type
 
 # Add pullSecret section to the installer configuration file
-add_pull_secret
+#add_pull_secret
 
 # Add additionalTrustBundle section to the installer configuration file
 #add_additional_trust_bundle

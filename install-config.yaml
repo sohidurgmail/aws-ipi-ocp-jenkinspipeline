@@ -35,3 +35,5 @@ publish: External
 sshKey: |
   ssh-rsa testRSA
 # pullSecret will be added from common/pull-secret.json
+pullSecret: |
+  __PULL_SECRET__

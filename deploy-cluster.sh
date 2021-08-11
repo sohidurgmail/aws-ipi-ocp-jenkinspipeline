@@ -2,13 +2,13 @@
 
 set -ex
 
-#readonly SCRIPT_DIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
-#readonly TOP_DIR=$(cd "${SCRIPT_DIR}"; git rev-parse --show-toplevel)
+readonly SCRIPT_DIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
+readonly TOP_DIR=$(cd "${SCRIPT_DIR}"; git rev-parse --show-toplevel)
 
-#source "${TOP_DIR}"/ocp/common/funcs.sh
-#source "${SCRIPT_DIR}"/config.sh
-source config.sh
-source funcs.sh
+source "${TOP_DIR}"funcs.sh
+source "${SCRIPT_DIR}"/config.sh
+#source config.sh
+#source funcs.sh
 export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
 
 

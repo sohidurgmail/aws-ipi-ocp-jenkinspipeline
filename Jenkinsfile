@@ -41,13 +41,26 @@ pipeline {
                   }
             }
             stage('Deploy OCP') {
+                  options {
+                        timeout(time: 2, unit: 'HOURS')   // timeout of deploy ocp
+                  }
+
                   steps {
                         echo 'Deploy OCP'
                         script {
-                              sh(
-                                    script: "bash -ex deploy-cluster.sh",
-                                    label: "Deploy cluster"
-                              )
+                              try{
+                              sh """
+                              bash -ex deploy-cluster.sh
+                              """
+                        }     catch (err) {
+                              //if (params.DEPROVISION_OCP_ON_FAIL) {
+                                    echo "Failed to deploy OCP, Rolling back (Deprovisioning)"
+                                    echo "!!! THE CLEAN UP IN PROGRESS - DO NOT ABORT THIS BUILD !!!"
+                                    sh "bash -x cnv-qe-automation/ocp/aws-ipi/deprovision.sh"
+                                    echo "Finished Deprovisioning after OCP Failure"
+
+                        } 
+                        throw err
                         }
                   }
             }

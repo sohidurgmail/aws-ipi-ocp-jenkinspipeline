@@ -13,11 +13,11 @@ source "${TOP_DIR}"/config.sh
 
 # Download the latest AWS Command Line Interface
 echo " Downlod the latest AWS Command Line Interface"
-sudo curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-sudo unzip awscli-bundle.zip
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip awscli-bundle.zip
 
 # Install the AWS CLI into /bin/aws
-sudo ./awscli-bundle/install -i /usr/local/aws -b ${BINARIES_DIR}/aws
+./awscli-bundle/install -i /usr/local/aws -b ${BINARIES_DIR}/aws
 
 # Validate that the AWS CLI works
 aws --version
@@ -40,10 +40,10 @@ wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$OCP_RELEASE/open
 wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$OCP_RELEASE/openshift-install-linux-$OCP_RELEASE.tar.gz
 
 # extract it to a location that will make it easy to use.
-sudo tar xzf openshift-client-linux-$OCP_RELEASE.tar.gz -C ${BINARIES_DIR} oc kubectl
+tar xzf openshift-client-linux-$OCP_RELEASE.tar.gz -C ${BINARIES_DIR} oc kubectl
 which oc; oc version
 
-sudo tar xzf openshift-install-linux-$OCP_RELEASE.tar.gz -C ${BINARIES_DIR}
+tar xzf openshift-install-linux-$OCP_RELEASE.tar.gz -C ${BINARIES_DIR}
 
 
 oc completion bash | sudo tee /etc/bash_completion.d/openshift > /dev/null

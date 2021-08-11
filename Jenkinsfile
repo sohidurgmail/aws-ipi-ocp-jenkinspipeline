@@ -11,11 +11,11 @@ pipeline {
                         //library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)
                   }
             }
-            stage('Checkout to automation repo') {
-                  steps {
-                        echo 'Checkout to automation repo'
-                  }
-            }
+//            stage('Checkout to automation repo') {
+//                  steps {
+//                        echo 'Checkout to automation repo'
+//                  }
+ //           }
             stage('Cofigure all the rerequisite') {
                   steps {
                         echo 'Configuring all the prerequisite for deploying the cluster'
@@ -28,18 +28,18 @@ pipeline {
      
                   }
             }
-            stage('Wipe cluster') {
-                  steps {
-                        echo 'Wipe cluster'
-                        script {
-                              sh(
-                                    script: "bash -ex deprovision.sh",
-                                    label: "Wipe a cluster"
-                              )
-                        }
-     
-                  }
-            }
+//            stage('Wipe cluster') {
+//                  steps {
+//                        echo 'Wipe cluster'
+//                        script {
+//                              sh(
+//                                    script: "bash -ex deprovision.sh",
+//                                    label: "Wipe a cluster"
+//                              )
+//                        }
+//     
+//                  }
+//            }
             stage('Deploy OCP') {
                   options {
                         timeout(time: 2, unit: 'HOURS')   // timeout of deploy ocp

@@ -25,15 +25,17 @@ aws --version
 # Clean up downloaded files
 #sudo rm -rf /root/awscli-bundle /root/awscli-bundle.zip
 
-
+if [ ! -d "$HOME/.aws" ] ;
+then
 mkdir -p $HOME/.aws
+#rm -rf $HOME/.aws/credentials
 cat << EOF >>  $HOME/.aws/credentials
 [default]
 aws_access_key_id = "${AWS_KEY}"
 aws_secret_access_key = "${AWS_SECRETKEY}"
 region = ${REGION}
 EOF
-
+fi
 
 # Download and extract the OpenShift CLI, or oc client
 wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$OCP_RELEASE/openshift-client-linux-$OCP_RELEASE.tar.gz

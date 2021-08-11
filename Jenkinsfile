@@ -16,6 +16,18 @@ pipeline {
                         echo 'Checkout to automation repo'
                   }
             }
+            stage('Cofigure all the rerequisite') {
+                  steps {
+                        echo 'Configuring all the prerequisite for deploying the cluster'
+                        script {
+                              sh(
+                                    script: "bash -ex pre-deploy.sh",
+                                    label: "pre deploy"
+                              )
+                        }
+     
+                  }
+            }
             stage('Wipe cluster') {
                   steps {
                         echo 'Wipe cluster'
@@ -31,6 +43,12 @@ pipeline {
             stage('Deploy OCP') {
                   steps {
                         echo 'Deploy OCP'
+                        script {
+                              sh(
+                                    script: "bash -ex deploy-cluster.sh",
+                                    label: "Deploy cluster"
+                              )
+                        }
                   }
             }
             stage('Checking OCP Workers Health') {

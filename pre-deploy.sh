@@ -41,10 +41,10 @@ wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$OCP_RELEASE/open
 
 # extract it to a location that will make it easy to use.
 tar xzf openshift-client-linux-$OCP_RELEASE.tar.gz -C ${BINARIES_DIR} oc kubectl
-which oc; oc version
+${BINARIES_DIR}oc version
 
 tar xzf openshift-install-linux-$OCP_RELEASE.tar.gz -C ${BINARIES_DIR}
 
 
-oc completion bash | sudo tee /etc/bash_completion.d/openshift > /dev/null
-. /usr/share/bash-completion/bash_completion
+#oc completion bash | sudo tee /etc/bash_completion.d/openshift > /dev/null
+#. /usr/share/bash-completion/bash_completion

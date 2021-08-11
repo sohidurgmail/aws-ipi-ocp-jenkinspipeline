@@ -12,12 +12,12 @@ source "${TOP_DIR}"/config.sh
 #sudo bash
 
 # Download the latest AWS Command Line Interface
-echo " Downlod the latest AWS Command Line Interface"
-curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-unzip -o awscli-bundle.zip
+#echo " Downlod the latest AWS Command Line Interface"
+#curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+#unzip -o awscli-bundle.zip
 
 # Install the AWS CLI into /bin/aws
-./awscli-bundle/install -i /usr/local/aws -b ${BINARIES_DIR}/aws
+#./awscli-bundle/install -i /usr/local/aws -b ${BINARIES_DIR}/aws
 
 # Validate that the AWS CLI works
 aws --version

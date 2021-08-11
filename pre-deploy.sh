@@ -14,7 +14,7 @@ source "${TOP_DIR}"/config.sh
 # Download the latest AWS Command Line Interface
 echo " Downlod the latest AWS Command Line Interface"
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-unzip awscli-bundle.zip
+unzip -o awscli-bundle.zip
 
 # Install the AWS CLI into /bin/aws
 ./awscli-bundle/install -i /usr/local/aws -b ${BINARIES_DIR}/aws

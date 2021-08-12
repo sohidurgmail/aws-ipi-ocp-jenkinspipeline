@@ -11,17 +11,16 @@ source "${SCRIPT_DIR}"/config.sh
 
 # Cheking OCP installation
 
-echo "Cheking OCP installation"
+echo "Checking OCP installation"
 if [ -d "${CLUSTER_DIR}/auth/" ] ;
 then
     export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
     ${BINARIES_DIR}/oc get nodes
     if [ $? -eq 0 ];
     then
-      echo "OCP is already installed!!!"
+      echo "OCP is already installed!!! Exiting............!!!"
       exit 0
     fi
-    echo "OCP is not installed. Procedding for new installation"
 fi
 
 # Template the install-config.yaml

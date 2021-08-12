@@ -32,6 +32,12 @@ region = ${REGION}
 EOF
 fi
 
+if [ -d "${BINARIES_DIR}" ] ;
+then
+    echo "${BINARIES_DIR} already exist. nothing to install"
+    exit 0
+fi
+
 # Download and extract the OpenShift CLI, or oc client
 echo "Download and extract the OpenShift CLI, or oc client"
 wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$OCP_RELEASE/openshift-client-linux-$OCP_RELEASE.tar.gz

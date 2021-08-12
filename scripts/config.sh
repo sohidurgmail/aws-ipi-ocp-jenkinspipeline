@@ -10,4 +10,3 @@ export FLAVOR_SIZE=m5.xlarge
 export AWSKEY="${AWS_KEY}"
 export AWSSECRETKEY="${AWS_SECRET}"
 #export REGION=us-east-2
-mkdir -p ${CLUSTER_DIR}/bin

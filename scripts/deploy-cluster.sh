@@ -14,6 +14,7 @@ source "${SCRIPT_DIR}"/config.sh
 echo "Checking OCP installation"
 if [ -d "${CLUSTER_DIR}/auth/" ] ;
 then
+    echo "${CLUSTER_DIR}/auth/ exists. Checking if OCP is already installed and running with this auth"
     export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
     ${BINARIES_DIR}/oc get nodes
     if [ $? -eq 0 ];

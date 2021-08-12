@@ -21,7 +21,7 @@ pipeline {
                         echo 'Configuring all the prerequisite for deploying the cluster'
                         script {
                               sh(
-                                    script: "bash -ex /scripts/pre-deploy.sh",
+                                    script: "bash -ex scripts/pre-deploy.sh",
                                     label: "pre deploy"
                               )
                         }
@@ -33,7 +33,7 @@ pipeline {
 //                        echo 'Wipe cluster'
 //                        script {
 //                              sh(
-//                                    script: "bash -ex /scripts/deprovision.sh",
+//                                    script: "bash -ex scripts/deprovision.sh",
 //                                    label: "Wipe a cluster"
 //                              )
 //                        }
@@ -49,7 +49,7 @@ pipeline {
                         echo 'Deploy OCP'
                         script {
                               sh(
-                                    script: "bash -ex /scripts/deploy-cluster.sh",
+                                    script: "bash -ex scripts/deploy-cluster.sh",
                                     label: "Deploy cluster"
                               )
                         }

@@ -7,12 +7,22 @@ readonly TOP_DIR=$(cd "${SCRIPT_DIR}"; git rev-parse --show-toplevel)
 
 source "${TOP_DIR}"/scripts/funcs.sh
 source "${SCRIPT_DIR}"/config.sh
-export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
+#export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
 
-if [ ! -d "${CLUSTER_DIR}/auth/" ] ;
+# Cheking OCP installation
+
+echo "Cheking OCP installation"
+if [ -d "${CLUSTER_DIR}/auth/" ] ;
 then
-
-#mkdir -p "${CLUSTER_DIR}"
+    export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
+    ${BINARIES_DIR}/oc get nodes
+    if [ $? -eq 0 ];
+    then
+      echo "OCP is already installed!!!"
+      exit 0
+    fi
+    echo "OCP is not installed. Procedding for new installation"
+fi
 
 # Template the install-config.yaml
 sed -e "s/__DOMAIN__/${CLUSTER_DOMAIN}/" \
@@ -33,8 +43,8 @@ sed -e "s/__DOMAIN__/${CLUSTER_DOMAIN}/" \
 echo "Generate manifests"
 "${BINARIES_DIR}/openshift-install" --dir "${CLUSTER_DIR}" create manifests
 
-# Generate ISCSI Initiator, it is needed by kubevirt test suite.
-echo "Generate ISCSI Initiator, it is needed by kubevirt test suite."
+# Generate IPSec Initiator.
+echo "Generate IPSec Initiator"
 "${SCRIPT_DIR}"/ipsec-initiator.sh
 
 # Deploy the cluster
@@ -50,7 +60,3 @@ echo "Deploying OCP ${OCP_RELEASE} cluster on AWS"
 
 # Add post installation changes
 # "${TOP_DIR}"/ocp/common/post-create-cluster-scripts.sh
-    exit 0
-fi
-
-echo "${CLUSTER_DIR} exists!!!! Please make sure you are not redeploying existing cluster. If you want to redeploy the cluster, please reprovision existing cluster!!"

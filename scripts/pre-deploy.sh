@@ -34,8 +34,13 @@ fi
 
 if [ -d "${BINARIES_DIR}" ] ;
 then
-    echo "${BINARIES_DIR} already exist. nothing to install"
-    exit 0
+    echo "${BINARIES_DIR} already exist."
+    ${BINARIES_DIR}/oc version
+    if [ $? -eq 0 ];
+    then
+      echo "oc is already installed!!! Exiting............!!!"
+      exit 0
+    fi
 fi
 
 mkdir -p ${CLUSTER_DIR}/bin

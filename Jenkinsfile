@@ -58,6 +58,13 @@ pipeline {
             stage('Checking OCP Workers Health') {
                   steps {
                         echo "Checking OCP Workers Health"
+                        script {
+                              sh(
+                                    script: "bash -ex scripts/cluster-health-check.sh",
+                                    label: "Deploy cluster"
+                              )
+                        }
+                        
                   }
             }
             stage('Deploy Safwans computer') {

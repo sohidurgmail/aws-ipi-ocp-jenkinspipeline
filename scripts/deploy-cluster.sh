@@ -7,16 +7,12 @@ readonly TOP_DIR=$(cd "${SCRIPT_DIR}"; git rev-parse --show-toplevel)
 
 source "${TOP_DIR}"/scripts/funcs.sh
 source "${SCRIPT_DIR}"/config.sh
-#source config.sh
-#source funcs.sh
 export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
 
+if [ ! -d "${CLUSTER_DIR}" ] ;
+then
 
 mkdir -p "${CLUSTER_DIR}"
-
-# TODO: Deploydata.json
-
-#/bin/bash "${TOP_DIR}"/ocp/common/download-ocp-tools.sh
 
 # Template the install-config.yaml
 sed -e "s/__DOMAIN__/${CLUSTER_DOMAIN}/" \
@@ -25,16 +21,12 @@ sed -e "s/__DOMAIN__/${CLUSTER_DOMAIN}/" \
     -e "s/__PULL_SECRET__/${PULL_SECRET}/" \
     "${TOP_DIR}"/files/install-config.yaml > "${CLUSTER_DIR}"/install-config.yaml
 
-# Set networking.networkType field in the installer configuration file from
-# NETWORK_TYPE environment variable typically set by Jenkins OCP deployment job
-#set_network_type
 
 # Add pullSecret section to the installer configuration file
 #add_pull_secret
 
 # Add additionalTrustBundle section to the installer configuration file
 #add_additional_trust_bundle
-
 
 # Custom modification to manifests
 # Generate manifests
@@ -56,7 +48,9 @@ echo "Deploying OCP ${OCP_RELEASE} cluster on AWS"
 #fi
 
 
-# Add insecure registries
-#"${TOP_DIR}"/ocp/common/add-registries.sh
-# FIXME: https://issues.redhat.com/browse/CNV-12833
+# Add post installation changes
 # "${TOP_DIR}"/ocp/common/post-create-cluster-scripts.sh
+    exit 0
+fi
+
+echo "${CLUSTER_DIR} exists!!!! Please make sure you are not redeploying existing cluster. If you want to redeploy the cluster, please reprovision existing cluster!!"

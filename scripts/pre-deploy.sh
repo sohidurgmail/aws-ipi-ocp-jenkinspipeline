@@ -6,10 +6,6 @@ readonly SCRIPT_DIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
 readonly TOP_DIR=$(cd "${SCRIPT_DIR}"; git rev-parse --show-toplevel)
 
 source "${TOP_DIR}"/scripts/config.sh
-#source config.sh
-
-
-#sudo bash
 
 # Download the latest AWS Command Line Interface
 #echo " Downlod the latest AWS Command Line Interface"
@@ -28,7 +24,6 @@ aws --version
 if [ ! -d "$HOME/.aws" ] ;
 then
 mkdir -p $HOME/.aws
-#rm -rf $HOME/.aws/credentials
 cat << EOF >>  $HOME/.aws/credentials
 [default]
 aws_access_key_id = "${AWS_KEY}"

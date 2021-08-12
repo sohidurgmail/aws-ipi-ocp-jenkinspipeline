@@ -48,10 +48,13 @@ pipeline {
                   steps {
                         echo 'Deploy OCP'
                         script {
-                              sh(
-                                    script: "bash -ex scripts/deploy-cluster.sh",
-                                    label: "Deploy cluster"
-                              )
+                              try {
+                                    sh(
+                                          script: "bash -ex scripts/deploy-cluster.sh",
+                                          label: "Deploy cluster"
+                                    )
+                              } catch (err)
+                              throw err
                         }
                   }
             }

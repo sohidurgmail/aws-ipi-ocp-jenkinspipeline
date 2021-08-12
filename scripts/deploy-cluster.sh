@@ -9,10 +9,10 @@ source "${TOP_DIR}"/scripts/funcs.sh
 source "${SCRIPT_DIR}"/config.sh
 export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
 
-if [ ! -d "${CLUSTER_DIR}" ] ;
+if [ ! -d "${CLUSTER_DIR}/auth/" ] ;
 then
 
-mkdir -p "${CLUSTER_DIR}"
+#mkdir -p "${CLUSTER_DIR}"
 
 # Template the install-config.yaml
 sed -e "s/__DOMAIN__/${CLUSTER_DOMAIN}/" \

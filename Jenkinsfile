@@ -61,7 +61,7 @@ pipeline {
                         script {
                               sh(
                                     script: "bash -ex scripts/cluster-health-check.sh",
-                                    label: "Deploy cluster"
+                                    label: "Cluster Health Check"
                               )
                         }
                         

@@ -39,15 +39,15 @@ fi
 
 # Download and extract the OpenShift CLI, or oc client
 echo "Download and extract the OpenShift CLI, or oc client"
-#wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$OCP_RELEASE/openshift-client-linux-$OCP_RELEASE.tar.gz
-#wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$OCP_RELEASE/openshift-install-linux-$OCP_RELEASE.tar.gz
+wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$OCP_RELEASE/openshift-client-linux-$OCP_RELEASE.tar.gz
+wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$OCP_RELEASE/openshift-install-linux-$OCP_RELEASE.tar.gz
 
 # extract it to a location that will make it easy to use.
 echo "extract it to a location that will make it easy to use."
-#tar xzf openshift-client-linux-$OCP_RELEASE.tar.gz -C ${BINARIES_DIR} oc kubectl
-#${BINARIES_DIR}oc version
+tar xzf openshift-client-linux-$OCP_RELEASE.tar.gz -C ${BINARIES_DIR} oc kubectl
+${BINARIES_DIR}oc version
 
-#tar xzf openshift-install-linux-$OCP_RELEASE.tar.gz -C ${BINARIES_DIR}
+tar xzf openshift-install-linux-$OCP_RELEASE.tar.gz -C ${BINARIES_DIR}
 
 
 #oc completion bash | sudo tee /etc/bash_completion.d/openshift > /dev/null

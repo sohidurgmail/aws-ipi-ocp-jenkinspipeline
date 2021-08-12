@@ -6,7 +6,7 @@ readonly SCRIPT_DIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
 readonly TOP_DIR=$(cd "${SCRIPT_DIR}"; git rev-parse --show-toplevel)
 
 source "${TOP_DIR}"/scripts/funcs.sh
-source "${SCRIPT_DIR}"/scripts/config.sh
+source "${SCRIPT_DIR}"/config.sh
 #source config.sh
 #source funcs.sh
 export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
@@ -23,7 +23,7 @@ sed -e "s/__DOMAIN__/${CLUSTER_DOMAIN}/" \
     -e "s/__CLUSTER_NAME__/${CLUSTER_NAME}/" \
     -e "s/__COMPUTE_FLAVOR__/${FLAVOR_SIZE}/" \
     -e "s/__PULL_SECRET__/${PULL_SECRET}/" \
-    "${SCRIPT_DIR}"/files/install-config.yaml > "${CLUSTER_DIR}"/install-config.yaml
+    "${TOP_DIR}"/files/install-config.yaml > "${CLUSTER_DIR}"/install-config.yaml
 
 # Set networking.networkType field in the installer configuration file from
 # NETWORK_TYPE environment variable typically set by Jenkins OCP deployment job

@@ -5,17 +5,6 @@ pipeline {
       }
       agent { label "ocp-aws-ipi-executor" }
       stages {
- //           stage('Load shared libs from local repo') {
- //                 steps {
- //                       echo "library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)"
-                        //library identifier: 'shared-library@thisIsRequieredButIgnored', retriever: legacySCM(scm)
- //                 }
- //           }
-//            stage('Checkout to automation repo') {
-//                  steps {
-//                        echo 'Checkout to automation repo'
-//                  }
- //           }
             stage('Cofigure all the rerequisite') {
                   steps {
                         echo 'Configuring all the prerequisite for deploying the cluster'
@@ -48,13 +37,10 @@ pipeline {
                   steps {
                         echo 'Deploy OCP'
                         script {
-                              try {
-                                    sh(
-                                          script: "bash -ex scripts/deploy-cluster.sh",
-                                          label: "Deploy cluster"
-                                    )
-                              } catch (err)
-                              throw err
+                              sh(
+                                    script: "bash -ex scripts/deploy-cluster.sh",
+                                    label: "Deploy cluster"
+                              )
                         }
                   }
             }
@@ -64,7 +50,7 @@ pipeline {
                         script {
                               sh(
                                     script: "bash -ex scripts/cluster-health-check.sh",
-                                    label: "Cluster Health Check"
+                                    label: "Cluster Health"
                               )
                         }
                         

@@ -56,10 +56,10 @@ pipeline {
                         
                   }
             }
-            stage('Deploy Safwans computer') {
-                  steps {
-                        echo "Deploy OpenShift Service Mesh"
-                  }
-            }
+//            stage('Integrate ServiceMesh') {
+//                  steps {
+//                        echo "Integrate OpenShift Service Mesh"
+//                  }
+//            }
       }
 }

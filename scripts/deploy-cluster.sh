@@ -32,6 +32,9 @@ sed -e "s/__DOMAIN__/${CLUSTER_DOMAIN}/" \
     "${TOP_DIR}"/files/install-config.yaml > "${CLUSTER_DIR}"/install-config.yaml
 
 
+# Copy install-config.yaml file to another location
+cp "${CLUSTER_DIR}"/install-config.yaml /root/
+
 # Add pullSecret section to the installer configuration file
 #add_pull_secret
 

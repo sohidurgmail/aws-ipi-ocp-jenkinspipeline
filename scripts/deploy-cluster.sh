@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#
+# This script will deploy OCP 4 cluster on AWS. All env var will be sources from config.sh file
+# OCP_RELEASE Var is to define the OCP version
+#
+
 set -ex
 
 readonly SCRIPT_DIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")

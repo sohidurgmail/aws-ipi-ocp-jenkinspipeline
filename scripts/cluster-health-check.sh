@@ -26,3 +26,10 @@ ${BINARIES_DIR}/oc get clusterversions
 
 echo "Checking if HAProxy ingress controller PODs are present on  openshift-ingress namespace"
 ${BINARIES_DIR}/oc get pod -n openshift-ingress
+
+echo "Check that all the cluster nodes are reporting usage metrics."
+${BINARIES_DIR}/oc adm top node
+
+echo "Ensure that all the etcd cluster members are healthy."
+${BINARIES_DIR}/oc get pods -n openshift-etcd | grep etcd-ip
+

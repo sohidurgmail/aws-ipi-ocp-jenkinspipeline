@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Generate an IPSec Initiator to inject to the manifest
+# Generate an IPSec Initiator to inject on the manifest
 #
 
 set -ex

@@ -3,8 +3,10 @@
 set -ex
 
 # Set Environment and get configuration needed
-#source cnv-qe-automation/ocp/aws-ipi/config.sh
-source config.sh
+
+source "${SCRIPT_DIR}"/config.sh
+
+#source config.sh
 
 export CLUSTER_DIR="${HOME}/${CLUSTER_DOMAIN}/${CLUSTER_NAME}"
 export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"

@@ -6,6 +6,10 @@ compute:
   name: worker
   platform:
     aws:
+      zones:
+      - ca-central-1a
+      - ca-central-1b
+      - ca-central-1d
       type: __COMPUTE_FLAVOR__
   replicas: 3
 controlPlane:
@@ -14,7 +18,11 @@ controlPlane:
   name: master
   platform:
     aws:
-      type: __COMPUTE_FLAVOR__
+      zones:
+      - ca-central-1a
+      - ca-central-1b
+      - ca-central-1d
+      type: __MASTER_FLAVOR__
   replicas: 3
 metadata:
   creationTimestamp: null

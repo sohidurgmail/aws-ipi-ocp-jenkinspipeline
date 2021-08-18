@@ -38,7 +38,7 @@ networking:
   - 172.30.0.0/16
 platform:
   aws:
-    region: us-east-2
+    region: __OCP_REGION__
 publish: External
 sshKey: |
   ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKJ+Hpbp9Tyz0LhZ/psGMuf4tOGPNCnR+yiLz58WAM8p6Z3mk7aUU7muU73lx3UKzboQ/Bct0X8cBJOh9aXXBRa2aZxGfQj1x4Zxf4wUwIEev68WBxBCG+D3/N5V0AAD/SYsF0xymcUX0/fn0X94gKREHFbJDiaXNXPE+ohpKClunIp15VZnAxxBZYXzIwNp2EguvTbOMBZlmyvCsd21Ayj+/AtYjSBxJWcenaYVmX/T/nYVteJGlY0kam2VnCLGqAinasEu9ZfElwqUqKeA8ePoypi7FpcdQysh8k1p0lBlFm9afHwpffMeEpztjiprt//5MkJ04+QGKlndDykQK9 opentlc-mgr@admin.na.shared.opentlc.com

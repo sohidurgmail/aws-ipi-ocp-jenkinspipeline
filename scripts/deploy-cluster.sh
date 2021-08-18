@@ -35,6 +35,7 @@ sed -e "s/__DOMAIN__/${CLUSTER_DOMAIN}/" \
     -e "s/__CLUSTER_NAME__/${CLUSTER_NAME}/" \
     -e "s/__COMPUTE_FLAVOR__/${WORKER_FLAVOR_SIZE}/" \
     -e "s/__MASTER_FLAVOR__/${MASTER_FLAVOR_SIZE}/" \
+    -e "s/__OCP_REGION__/${REGION}/" \
     -e "s/__PULL_SECRET__/${PULL_SECRET}/" \
     "${TOP_DIR}"/files/install-config.yaml > "${CLUSTER_DIR}"/install-config.yaml
 

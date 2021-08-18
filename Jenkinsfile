@@ -44,18 +44,18 @@ pipeline {
                         }
                   }
             }
-            stage('Checking OCP Workers Health') {
-                  steps {
-                        echo "Checking OCP Workers Health"
-                        script {
-                              sh(
-                                    script: "bash -ex scripts/cluster-health-check.sh",
-                                    label: "Cluster Health"
-                             )
-                        }
-                        
-                  }
-            }
+//            stage('Checking OCP Workers Health') {
+//                  steps {
+//                        echo "Checking OCP Workers Health"
+//                        script {
+//                              sh(
+//                                    script: "bash -ex scripts/cluster-health-check.sh",
+//                                    label: "Cluster Health"
+//                             )
+//                        }
+//                        
+//                  }
+//            }
 //            stage('Integrate ServiceMesh') {
 //                  steps {
 //                        echo "Integrate OpenShift Service Mesh"

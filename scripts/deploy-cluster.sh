@@ -13,18 +13,19 @@ readonly TOP_DIR=$(cd "${SCRIPT_DIR}"; git rev-parse --show-toplevel)
 source "${TOP_DIR}"/scripts/funcs.sh
 source "${SCRIPT_DIR}"/config.sh
 #export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
+#source "${TOP_DIR}"/scripts/cluster-health-check.sh
 
 # Cheking OCP installation
 
 echo "Checking OCP installation"
 if [ -d "${CLUSTER_DIR}/auth/" ] ;
 then
-    echo "${CLUSTER_DIR}/auth/ exists. Checking if OCP is already installed and running with this auth"
+    echo "${CLUSTER_DIR}/auth/ directory exists. Checking if OCP is already installed and running with this auth"
     export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
     ${BINARIES_DIR}/oc get nodes
     if [ $? -eq 0 ];
     then
-      echo "OCP is already installed!!! Exiting............!!!"
+      echo "OCP is already installed and running! Please deprovision existing cluster if you want to reinstall OCP"
       exit 0
     fi
 fi
@@ -37,8 +38,8 @@ sed -e "s/__DOMAIN__/${CLUSTER_DOMAIN}/" \
     "${TOP_DIR}"/files/install-config.yaml > "${CLUSTER_DIR}"/install-config.yaml
 
 
-# Copy install-config.yaml file to another location
-cp "${CLUSTER_DIR}"/install-config.yaml /root/
+# Copy install-config.yaml file to another location before consuming by openshift installer
+cp "${CLUSTER_DIR}"/install-config.yaml "${SCRIPT_DIR}"/
 
 # Add pullSecret section to the installer configuration file
 #add_pull_secret
@@ -65,6 +66,27 @@ echo "Deploying OCP ${OCP_RELEASE} cluster on AWS"
 #  exit 1
 #fi
 
+# Copy install-config.yaml file back to CLUSTER_DIR for reference 
+cp "${SCRIPT_DIR}"/install-config.yaml "${CLUSTER_DIR}"/
 
-# Add post installation changes
-# "${TOP_DIR}"/ocp/common/post-create-cluster-scripts.sh
+# Cluster health check after depolyment
+
+export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
+
+echo "Checking if all nodes are healthy"
+${BINARIES_DIR}/oc get nodes
+
+echo "Checking if all cluster operators are healthy"
+${BINARIES_DIR}/oc get co
+
+echo "Checking if desired cluster version is present"
+${BINARIES_DIR}/oc get clusterversions
+
+echo "Checking if HAProxy ingress controller PODs are present on  openshift-ingress namespace"
+${BINARIES_DIR}/oc get pod -n openshift-ingress
+
+echo "Check that all the cluster nodes are reporting usage metrics."
+${BINARIES_DIR}/oc adm top node
+
+echo "Ensure that all the etcd cluster members are healthy."
+${BINARIES_DIR}/oc get pods -n openshift-etcd | grep etcd-ip

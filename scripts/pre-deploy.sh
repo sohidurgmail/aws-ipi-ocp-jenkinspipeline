@@ -38,7 +38,7 @@ then
     ${BINARIES_DIR}/oc version
     if [ $? -eq 0 ];
     then
-      echo "oc is already installed!!! Exiting............!!!"
+      echo "oc binary is installed, No need to install again. Moving to the next step"
       exit 0
     fi
 fi

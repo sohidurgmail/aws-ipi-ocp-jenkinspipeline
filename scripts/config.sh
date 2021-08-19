@@ -10,5 +10,5 @@ export WORKER_FLAVOR_SIZE=r5.2xlarge
 
 export AWSKEY="${AWS_KEY}"
 export AWSSECRETKEY="${AWS_SECRET}"
-#export REGION=us-east-2
-export REGION=ca-central-1
+export REGION=us-east-2
+#export REGION=ca-central-1

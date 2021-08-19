@@ -60,35 +60,35 @@ echo "Generate IPSec Initiator"
 
 # Deploy the cluster
 echo "Deploying OCP ${OCP_RELEASE} cluster on AWS"
-#"${BINARIES_DIR}/openshift-install" create cluster --dir "$CLUSTER_DIR" --log-level debug || true
-#if [ -f "$KUBECONFIG" ]; then
-#  "${BINARIES_DIR}/openshift-install" wait-for --dir "$CLUSTER_DIR" --log-level debug install-complete
-#else
-#  echo "Installation didn't get through break"
-#  exit 1
-#fi
+"${BINARIES_DIR}/openshift-install" create cluster --dir "$CLUSTER_DIR" --log-level debug || true
+if [ -f "$KUBECONFIG" ]; then
+  "${BINARIES_DIR}/openshift-install" wait-for --dir "$CLUSTER_DIR" --log-level debug install-complete
+else
+  echo "Installation didn't get through break"
+  exit 1
+fi
 
 # Copy install-config.yaml file back to CLUSTER_DIR for reference 
 cp "${SCRIPT_DIR}"/install-config.yaml "${CLUSTER_DIR}"/
 
 # Cluster health check after depolyment
 
-#export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
+export KUBECONFIG="${CLUSTER_DIR}/auth/kubeconfig"
 
 echo "Checking if all nodes are healthy"
-#${BINARIES_DIR}/oc get nodes
+${BINARIES_DIR}/oc get nodes
 
 echo "Checking if all cluster operators are healthy"
-#${BINARIES_DIR}/oc get co
+${BINARIES_DIR}/oc get co
 
 echo "Checking if desired cluster version is present"
-#${BINARIES_DIR}/oc get clusterversions
+${BINARIES_DIR}/oc get clusterversions
 
 echo "Checking if HAProxy ingress controller PODs are present on  openshift-ingress namespace"
-#${BINARIES_DIR}/oc get pod -n openshift-ingress
+${BINARIES_DIR}/oc get pod -n openshift-ingress
 
 echo "Check that all the cluster nodes are reporting usage metrics."
-#${BINARIES_DIR}/oc adm top node
+${BINARIES_DIR}/oc adm top node
 
 echo "Ensure that all the etcd cluster members are healthy."
-#${BINARIES_DIR}/oc get pods -n openshift-etcd | grep etcd-ip
+${BINARIES_DIR}/oc get pods -n openshift-etcd | grep etcd-ip
